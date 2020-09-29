@@ -1,0 +1,33 @@
+{
+  "name": "confrariaweb/laravel-domain",
+  "description": "A laravel domain package for Confraria Web systems",
+  "keywords": [
+    "domain",
+    "framework",
+    "laravel"
+  ],
+  "license": "MIT",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Rafael Zingano",
+      "email": "confrariaweb@gmail.com"
+    }
+  ],
+  "require": {
+    "confrariaweb/laravel-vendor": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Confrariaweb\\Domain\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "ConfrariaWeb\\Domain\\Providers\\DomainServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev"
+}
