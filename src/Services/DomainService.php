@@ -2,7 +2,7 @@
 
 namespace ConfrariaWeb\Domain\Services;
 
-use Confrariaweb\Domain\Contracts\DomainContract;
+use ConfrariaWeb\Domain\Contracts\DomainContract;
 use ConfrariaWeb\Vendor\Traits\ServiceTrait;
 
 class DomainService {

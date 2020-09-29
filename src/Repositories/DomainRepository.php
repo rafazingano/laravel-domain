@@ -3,7 +3,7 @@
 namespace ConfrariaWeb\Domain\Repositories;
 
 use ConfrariaWeb\Domain\Contracts\DomainContract;
-use Confrariaweb\Domain\Models\Domain;
+use ConfrariaWeb\Domain\Models\Domain;
 use ConfrariaWeb\Vendor\Traits\RepositoryTrait;
 
 class DomainRepository implements DomainContract

@@ -1,5 +1,6 @@
 {
   "name": "confrariaweb/laravel-domain",
+  "version": "dev-master",
   "description": "A laravel domain package for Confraria Web systems",
   "keywords": [
     "domain",
@@ -19,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Confrariaweb\\Domain\\": "src"
+      "ConfrariaWeb\\Domain\\": "src"
     }
   },
   "extra": {

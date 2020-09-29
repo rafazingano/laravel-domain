@@ -1,6 +1,6 @@
 <?php
 
-namespace ConfrariaWeb\Site\Databases\Seeds;
+namespace ConfrariaWeb\Domain\Databases\Seeds;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
