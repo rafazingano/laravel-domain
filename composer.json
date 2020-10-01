@@ -20,7 +20,8 @@
   },
   "autoload": {
     "psr-4": {
-      "ConfrariaWeb\\Domain\\": "src"
+      "ConfrariaWeb\\Domain\\": "src",
+      "ConfrariaWeb\\Domain\\Databases\\Seeds\\": "databases/Seeds"
     }
   },
   "extra": {
