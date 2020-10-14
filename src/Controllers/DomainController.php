@@ -27,17 +27,17 @@ class DomainController extends Controller
         return DataTables::of($domains)
             ->addColumn('action', function ($domain) {
                 return '<div class="btn-group btn-group-sm float-right" role="group">
-                <a href="'.route('admin.domains.show', $domain->id).'" class="btn btn-info">
+                <a href="'.route('dashboard.domains.show', $domain->id).'" class="btn btn-info">
                     <i class="glyphicon glyphicon-eye"></i> Ver
                 </a>
-                <a href="'.route('admin.domains.edit', $domain->id).'" class="btn btn-primary">
+                <a href="'.route('dashboard.domains.edit', $domain->id).'" class="btn btn-primary">
                     <i class="glyphicon glyphicon-edit"></i> Editar
                 </a>
-                <a class="btn btn-danger" href="'.route('admin.domains.destroy', $domain->id).'" onclick="event.preventDefault();
+                <a class="btn btn-danger" href="'.route('dashboard.domains.destroy', $domain->id).'" onclick="event.preventDefault();
                     document.getElementById(\'domains-destroy-form-' . $domain->id . '\').submit();">
                     Deletar
                 </a>
-                <form id="domains-destroy-form-' . $domain->id . '" action="'.route('admin.domains.destroy', $domain->id).'" method="POST" style="display: none;">
+                <form id="domains-destroy-form-' . $domain->id . '" action="'.route('dashboard.domains.destroy', $domain->id).'" method="POST" style="display: none;">
                     <input name="_method" type="hidden" value="DELETE">    
                     <input name="_token" type="hidden" value="'. csrf_token() .'">
                     <input type="hidden" name="id" value="'.$domain->id.'">
@@ -46,6 +46,7 @@ class DomainController extends Controller
             })
             ->make();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -78,7 +79,7 @@ class DomainController extends Controller
         $data = $request->all();
         $domain = resolve('DomainService')->create($data);
         return redirect()
-            ->route('admin.domains.edit', $domain->id)
+            ->route('dashboard.domains.edit', $domain->id)
             ->with('status', __('domain.create.success'));
     }
 
@@ -117,7 +118,7 @@ class DomainController extends Controller
         $data = $request->all();
         resolve('DomainService')->update($data, $id);
         return redirect()
-            ->route('admin.domains.edit', $id)
+            ->route('dashboard.domains.edit', $id)
             ->with('status', trans('domain.edit.success'));
     }
 

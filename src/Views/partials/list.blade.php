@@ -13,7 +13,7 @@
             $('#domains-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route('admin.domains.datatables') }}',
+                ajax: '{{ route('dashboard.domains.datatables') }}',
                 keys: !0,
                 select: {
                     style: "multi"
