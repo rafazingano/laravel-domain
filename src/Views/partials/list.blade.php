@@ -1,4 +1,4 @@
-<table class="table align-items-center table-flush table-striped table-hover" id="domains-table">
+<table class="table table-flush table-striped table-hover" id="domains-table">
     <thead class="thead-light">
         <tr>
             <th>Dominio</th>

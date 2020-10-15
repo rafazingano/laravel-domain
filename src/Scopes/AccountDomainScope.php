@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Support\Facades\Auth;
 
-class DomainScope implements Scope
+class AccountDomainScope implements Scope
 {
     /**
      * Apply the scope to a given Eloquent query builder.
@@ -18,12 +18,14 @@ class DomainScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->when(Auth::check(), function ($query) {
-            return $query->where(function ($query) {
-                $query->where('user_id', Auth::id());
-            });
+        $builder->when((Auth::check() && existsAccount()), function ($query) {
+            return $query
+                ->join('account_domain', function ($join) {
+                    $join->on('domains.id', '=', 'account_domain.domain_id')
+                        ->where('account_domain.account_id', account()->id);
+                });
         }, function ($query) {
             return $query->whereNotNull('user_id');
-        })->orderBy('domain');
+        });
     }
 }

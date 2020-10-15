@@ -16,7 +16,8 @@
     }
   ],
   "require": {
-    "confrariaweb/laravel-vendor": "dev-master"
+    "confrariaweb/laravel-vendor": "dev-master",
+    "staudenmeir/eloquent-has-many-deep" : "^1.13"
   },
   "autoload": {
     "psr-4": {
