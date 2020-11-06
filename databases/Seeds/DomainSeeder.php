@@ -2,8 +2,8 @@
 
 namespace ConfrariaWeb\Domain\Databases\Seeds;
 
+use ConfrariaWeb\Domain\Models\Domain;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DomainSeeder extends Seeder
 {
@@ -14,16 +14,7 @@ class DomainSeeder extends Seeder
      */
     public function run()
     {
-        $data['domains'] = [
-            ['domain' => 'localhost', 'user_id' => 1]
-        ];
-
-        foreach ($data as $table => $inserts) {
-            foreach ($inserts as $insert) {
-                //DB::table($table)->insert($insert);
-            }
-        }
-
+        //Domain::firstOrCreate(['domain' => 'localhost', 'user_id' => 1]);
     }
 
 }

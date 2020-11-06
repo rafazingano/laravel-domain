@@ -2,7 +2,7 @@
 
 namespace ConfrariaWeb\Domain\Models;
 
-use App\Models\User;
+use ConfrariaWeb\Account\Traits\AccountTrait;
 use ConfrariaWeb\Domain\Scopes\AccountDomainScope;
 use Illuminate\Database\Eloquent\Model;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
@@ -10,6 +10,7 @@ use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 class Domain extends Model
 {
 
+    use AccountTrait;
     use HasRelationships;
 
     protected $fillable = [
@@ -20,11 +21,6 @@ class Domain extends Model
     {
         static::addGlobalScope(new AccountDomainScope());
     }
-
-    /*public function accounts()
-    {
-        return $this->hasManyDeepFromRelations($this->user(), (new User)->accounts());
-    }*/
 
     public function user()
     {

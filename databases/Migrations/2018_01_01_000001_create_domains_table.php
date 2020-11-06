@@ -13,7 +13,6 @@ class CreateDomainsTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::create('domains', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
@@ -25,7 +24,6 @@ class CreateDomainsTable extends Migration
                 ->onDelete('cascade');
             $table->timestamps();
         });
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -35,8 +33,6 @@ class CreateDomainsTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('domains');
-        Schema::enableForeignKeyConstraints();
     }
 }

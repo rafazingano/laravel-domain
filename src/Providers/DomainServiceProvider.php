@@ -23,7 +23,7 @@ class DomainServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
         $this->loadMigrationsFrom(__DIR__ . '/../../databases/Migrations');
         $this->loadViewsFrom(__DIR__.'/../Views', 'domain');
-        $this->registerSeedsFrom(__DIR__.'/../../databases/Seeds');
+        //$this->registerSeedsFrom(__DIR__.'/../../databases/Seeds');
 
         Domain::observe(DomainObserver::class);
     }
