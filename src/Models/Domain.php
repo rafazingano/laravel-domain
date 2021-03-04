@@ -27,4 +27,9 @@ class Domain extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    /*public function sites()
+    {
+        return $this->belongsToMany('ConfrariaWeb\Site\Models\Site');
+    }*/
+
 }

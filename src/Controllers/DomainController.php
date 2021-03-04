@@ -2,6 +2,7 @@
 
 namespace ConfrariaWeb\Domain\Controllers;
 
+use ConfrariaWeb\Domain\Models\Domain;
 use ConfrariaWeb\Domain\Requests\StoreDomain;
 use ConfrariaWeb\Domain\Requests\UpdateDomain;
 use Illuminate\Http\Request;
@@ -27,6 +28,11 @@ class DomainController extends Controller
         return DataTables::of($domains)
             ->addColumn('action', function ($domain) {
                 return '<div class="btn-group btn-group-sm float-right" role="group">
+
+                <a href="'.route('dashboard.domains.dns.index', ['domain' => $domain->domain]).'" class="btn btn-warning">
+                    <i class="glyphicon glyphicon-eye"></i> Dns
+                </a>
+                
                 <a href="'.route('dashboard.domains.show', $domain->id).'" class="btn btn-info">
                     <i class="glyphicon glyphicon-eye"></i> Ver
                 </a>
@@ -78,9 +84,10 @@ class DomainController extends Controller
     {
         $data = $request->all();
         $domain = resolve('DomainService')->create($data);
+        $id = $domain->get('obj')->id;
         return redirect()
-            ->route('dashboard.domains.edit', $domain->id)
-            ->with('status', __('domain.create.success'));
+            ->route('dashboard.domains.edit', $id)
+            ->with('status', $domain->get('status'));
     }
 
     /**
@@ -103,6 +110,7 @@ class DomainController extends Controller
     public function edit($id)
     {
         $this->data['domain'] = resolve('DomainService')->find($id);
+        abort_unless($this->data['domain'], 404);
         return view(cwView('domains.edit', true), $this->data);
     }
 
@@ -116,10 +124,10 @@ class DomainController extends Controller
     public function update(UpdateDomain $request, $id)
     {
         $data = $request->all();
-        resolve('DomainService')->update($data, $id);
+        $domain = resolve('DomainService')->update($data, $id);
         return redirect()
             ->route('dashboard.domains.edit', $id)
-            ->with('status', trans('domain.edit.success'));
+            ->with('status', $domain->get('status'));
     }
 
     /**

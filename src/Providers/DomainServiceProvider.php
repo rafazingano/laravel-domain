@@ -2,8 +2,13 @@
 
 namespace ConfrariaWeb\Domain\Providers;
 
+use ConfrariaWeb\Domain\Contracts\DomainDnsContract;
 use ConfrariaWeb\Domain\Models\Domain;
+use ConfrariaWeb\Domain\Models\DomainDns;
+use ConfrariaWeb\Domain\Observers\DomainDnsObserver;
 use ConfrariaWeb\Domain\Observers\DomainObserver;
+use ConfrariaWeb\Domain\Repositories\DomainDnsRepository;
+use ConfrariaWeb\Domain\Services\DomainDnsService;
 use ConfrariaWeb\Vendor\Traits\ProviderTrait;
 use Illuminate\Support\ServiceProvider;
 use ConfrariaWeb\Domain\Contracts\DomainContract;
@@ -26,6 +31,7 @@ class DomainServiceProvider extends ServiceProvider
         //$this->registerSeedsFrom(__DIR__.'/../../databases/Seeds');
 
         Domain::observe(DomainObserver::class);
+        DomainDns::observe(DomainDnsObserver::class);
     }
 
     /**
@@ -38,6 +44,11 @@ class DomainServiceProvider extends ServiceProvider
        $this->app->bind(DomainContract::class, DomainRepository::class);
         $this->app->singleton('DomainService', function ($app) {
             return new DomainService($app->make(DomainContract::class));
+        });
+
+        $this->app->bind(DomainDnsContract::class, DomainDnsRepository::class);
+        $this->app->singleton('DomainDnsService', function ($app) {
+            return new DomainDnsService($app->make(DomainDnsContract::class));
         });
     }
 

@@ -17,7 +17,7 @@
   ],
   "require": {
     "confrariaweb/laravel-vendor": "dev-master",
-    "staudenmeir/eloquent-has-many-deep" : "^1.13"
+    "staudenmeir/eloquent-has-many-deep": "^1.13"
   },
   "autoload": {
     "psr-4": {
@@ -28,6 +28,7 @@
   "extra": {
     "laravel": {
       "providers": [
+        "ConfrariaWeb\\Domain\\Providers\\DomainAuthServiceProvider",
         "ConfrariaWeb\\Domain\\Providers\\DomainServiceProvider"
       ]
     }
