@@ -61,7 +61,7 @@ class DomainController extends Controller
     public function index()
     {
         $data['domains'] = resolve('DomainService')->all();
-        return view(cwView('domains.index', true), $data);
+        return view(config('cw_domain.views', 'domain::') . 'domains.index', $this->data);
     }
 
     /**
@@ -71,7 +71,7 @@ class DomainController extends Controller
      */
     public function create()
     {
-        return view(cwView('domains.create', true));
+        return view(config('cw_domain.views', 'domain::') . 'domains.create', $this->data);
     }
 
     /**
@@ -111,7 +111,7 @@ class DomainController extends Controller
     {
         $this->data['domain'] = resolve('DomainService')->find($id);
         abort_unless($this->data['domain'], 404);
-        return view(cwView('domains.edit', true), $this->data);
+        return view(config('cw_domain.views', 'domain::') . 'domains.edit', $this->data);
     }
 
     /**

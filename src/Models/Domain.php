@@ -5,13 +5,11 @@ namespace ConfrariaWeb\Domain\Models;
 use ConfrariaWeb\Account\Traits\AccountTrait;
 use ConfrariaWeb\Domain\Scopes\AccountDomainScope;
 use Illuminate\Database\Eloquent\Model;
-use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class Domain extends Model
 {
 
     use AccountTrait;
-    use HasRelationships;
 
     protected $fillable = [
         'domain', 'user_id'
@@ -27,9 +25,13 @@ class Domain extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    /*public function sites()
+    public function sites()
     {
         return $this->belongsToMany('ConfrariaWeb\Site\Models\Site');
-    }*/
+    }
+
+    public function dns(){
+        return $this->hasMany('ConfrariaWeb\Domain\Models\DomainDns');
+    }
 
 }

@@ -14,7 +14,7 @@ class DomainSeeder extends Seeder
      */
     public function run()
     {
-        //Domain::firstOrCreate(['domain' => 'localhost', 'user_id' => 1]);
+        Domain::firstOrCreate(['domain' => 'localhost', 'user_id' => 1]);
     }
 
 }

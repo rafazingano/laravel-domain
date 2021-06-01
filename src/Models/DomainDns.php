@@ -8,7 +8,11 @@ class DomainDns extends Model
 {
 
     protected $fillable = [
-        'domain_id', 'type', 'name', 'content', 'ttl', 'proxy', 'options'
+        'domain_id', 'type', 'ttl', 'options'
+    ];
+
+    protected $casts = [
+        'options' => 'collection',
     ];
 
     public function domain()

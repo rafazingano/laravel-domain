@@ -29,6 +29,7 @@ class DomainServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../../databases/Migrations');
         $this->loadViewsFrom(__DIR__.'/../Views', 'domain');
         //$this->registerSeedsFrom(__DIR__.'/../../databases/Seeds');
+        $this->publishes([__DIR__ . '/../../config/cw_domain.php' => config_path('cw_domain.php')], 'config');
 
         Domain::observe(DomainObserver::class);
         DomainDns::observe(DomainDnsObserver::class);

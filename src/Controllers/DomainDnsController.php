@@ -55,7 +55,7 @@ class DomainDnsController extends Controller
     {
         $this->data['domain'] = $domain;
         $this->data['dns'] = resolve('DomainDnsService')->all();
-        return view(cwView('domains.dns.index', true), $this->data);
+        return view(config('cw_domain.views', 'domain::') . 'dns.index', $this->data);
     }
 
     /**
@@ -66,7 +66,7 @@ class DomainDnsController extends Controller
     public function create($domain)
     {
         $this->data['domain'] = resolve('DomainService')->findBy('domain', $domain);
-        return view(cwView('domains.dns.create', true), $this->data);
+        return view(config('cw_domain.views', 'domain::') . 'dns.create', $this->data);
     }
 
     /**
@@ -108,7 +108,7 @@ class DomainDnsController extends Controller
         $DomainDns = resolve('DomainDnsService')->find($id);
         $this->data['dns'] = $DomainDns;
         $this->data['domain'] = $DomainDns->domain;
-        return view(cwView('domains.dns.edit', true), $this->data);
+        return view(config('cw_domain.views', 'domain::') . 'dns.edit', $this->data);
     }
 
     /**
