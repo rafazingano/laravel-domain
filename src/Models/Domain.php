@@ -2,22 +2,34 @@
 
 namespace ConfrariaWeb\Domain\Models;
 
-use ConfrariaWeb\Account\Traits\AccountTrait;
-use ConfrariaWeb\Domain\Scopes\AccountDomainScope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Domain extends Model
 {
 
-    use AccountTrait;
+    use SoftDeletes;
+    
+    protected $fillable = ['user_id', 'site_id', 'domain', 'status'];
 
-    protected $fillable = [
-        'domain', 'user_id'
-    ];
-
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
     protected static function booted()
     {
-        static::addGlobalScope(new AccountDomainScope());
+        $account = \Illuminate\Support\Facades\Cache::get('account');
+        static::addGlobalScope('accountDomain', function (Builder $builder) use ($account) {
+
+            $builder->when($account, function ($query, $account) {
+                return $query->orderBy('id');
+            }, function ($query) {
+                return $query->orderBy('domain');
+            });
+
+        });
     }
 
     public function user()
@@ -25,9 +37,9 @@ class Domain extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function sites()
+    public function site()
     {
-        return $this->belongsToMany('ConfrariaWeb\Site\Models\Site');
+        return $this->belongsTo('ConfrariaWeb\Site\Models\Site');
     }
 
     public function dns(){

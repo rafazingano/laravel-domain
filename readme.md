@@ -1,6 +1,6 @@
 # CW Site Laravel
 
-A laravel site package for Confraria Web systems
+A laravel domain package for Confraria Web systems
 
 ## License
 

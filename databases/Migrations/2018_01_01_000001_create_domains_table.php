@@ -15,23 +15,22 @@ class CreateDomainsTable extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')
-                ->constrained('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('domain')->unique();
+            $table->boolean('status')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
 
-        Schema::create('domain_dns', function (Blueprint $table) {
+        /*Schema::create('domain_dns', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('domain_id')->constrained('domains');
+            $table->foreignId('domain_id')->constrained('domains')->onUpdate('cascade')->onDelete('cascade');
             $table->string('type');
             $table->string('ttl');
             $table->json('options')->nullable();
             $table->timestamps();
             $table->softDeletes();
-        });
+        });*/
 
     }
 
@@ -42,7 +41,7 @@ class CreateDomainsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domain_dns');
+        /*Schema::dropIfExists('domain_dns');*/
         Schema::dropIfExists('domains');
     }
 }
