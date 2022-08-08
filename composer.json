@@ -1,6 +1,6 @@
 {
   "name": "confrariaweb/laravel-domain",
-  "version": "dev-master",
+  "version": "1.0.0",
   "description": "A laravel domain package for Confraria Web systems",
   "keywords": [
     "domain",
